@@ -48,4 +48,4 @@ Salin blok di bawah untuk setiap bug yang Anda temukan.
 - Gejala: search pasien tidak berfungsi
 - Lokasi (file:baris): Controllers/PasienController.php:19
 - Penyebab: Pada method daftar() di PasienController, pola pencarian LIKE hanya memiliki wildcard % di awal ("%{$kataKunci}") tanpa % di akhir. Akibatnya, query SQL hanya mencari data yang berakhiran dengan kata kunci tersebut, bukan yang mengandung kata kunci di awal atau di tengah dan dihasil paginasi belum memanggil ->withQueryString(), sehingga saat berpindah halaman paginasi, filter pencarian (?cari=...) hilang.
-- Perbaikan: pada Controllers/PasienController.php Menambahkan % di akhir string LIKE menjadi "%{$kataKunci}%" serta menambahkan ->withQueryString() pada fungsi paginasi
+- Perbaikan: pada Controllers/PasienController.php Menambahkan % di akhir string LIKE menjadi "%{$kataKunci}%" serta menambahkan ->withQueryString() pada fungsi paginasi.
