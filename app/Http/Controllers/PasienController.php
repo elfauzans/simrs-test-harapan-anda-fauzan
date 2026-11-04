@@ -20,10 +20,11 @@ class PasienController extends Controller
             ->when($kataKunci, fn (Builder $query) => $query->whereAny(
                 ['no_rm', 'nik', 'nama'],
                 'like',
-                "%{$kataKunci}",
+                "%{$kataKunci}%",
             ))
             ->latest('id')
-            ->paginate(10);
+            ->paginate(10)
+            ->withQueryString();
 
         return view('pasien.daftar', ['daftarPasien' => $daftarPasien]);
     }
